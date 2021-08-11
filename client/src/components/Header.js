@@ -7,10 +7,11 @@ import TheatersIcon from '@material-ui/icons/Theaters';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
-import { selectUserEmail, selectUserPassword, selectUserPhoto, setUserLoginDetails } from "../features/userSlice";
+import { selectUserEmail, selectUserPassword, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../features/userSlice";
 import { useEffect } from "react";
 
 const Header = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const userEmail = useSelector(selectUserEmail)
     const userPhoto = useSelector(selectUserPhoto)
@@ -22,6 +23,14 @@ const Header = () => {
             dispatch(setUserLoginDetails(JSON.parse(user)))
         }
     }, [])
+
+    const handleAuth = () =>{
+        if(userEmail){
+            dispatch(setSignOutState())
+            localStorage.clear()
+            history.push('/')
+        }
+    }
 
 
     return (
@@ -58,7 +67,13 @@ const Header = () => {
                                 <span>SERIES</span>
                             </a>
                         </NavMenu>
-                        <UserImg src={userPhoto}/>
+                        <SignOut>
+                            <UserImg src={userPhoto}/>
+                            <DropDown>
+                                <span onClick={handleAuth}>Sign out</span>
+                            </DropDown>
+                        </SignOut>
+                        
                     </>
                 : <Login href='/login'>LOGIN</Login>
             }
@@ -181,11 +196,43 @@ const Login = styled.a`
 
 const UserImg = styled.img`
     object-fit: cover;
-    height: 60px;
-    width: 60px;
-    border-radius: 100px;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
 `;
 
+const DropDown = styled.div`
+    position: absolute;
+    top: 48px;
+    right: 0px;
+    background: rgb(19, 19, 19);
+    border: 1px solid rgba(151, 151, 151, 0.34);
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    width: 114px;
+    opacity: 0;
+`;
 
+const SignOut = styled.div`
+    position: relative;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+
+    &:hover {
+        ${DropDown} {
+            opacity: 1;
+            transition-duration: 1s;
+        }
+    }
+
+`;
 
 export default Header
