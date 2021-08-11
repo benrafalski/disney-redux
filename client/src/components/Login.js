@@ -1,12 +1,15 @@
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Login = () => {
+    const history = useHistory()
+
     return (
         <Container>
             <Content>
                 <CTA>
                     <CTALogoOne src='https://cannonball-cdn.bamgrid.com/assets/originals/bundle-logo-01.svg'/>
-                    <SignUp>GET ALL THREE</SignUp>
+                    <SignUp onClick={e => history.push('/login')}>GET ALL THREE</SignUp>
                     <Description>
                         Get Premier Access to Raya and the Last Dragon for an additional
                         fee with a Disney+ subscription. As pf 03/26/21, the price of

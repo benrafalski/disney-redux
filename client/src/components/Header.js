@@ -5,8 +5,13 @@ import AddIcon from '@material-ui/icons/Add';
 import StarIcon from '@material-ui/icons/Star';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
+import { useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
+    const dispatch = useDispatch()
+    const history = useHistory()
+
     return (
         <Nav>
             <Logo>
@@ -38,7 +43,7 @@ const Header = () => {
                     <span>SERIES</span>
                 </a>
             </NavMenu>
-            <Login>LOGIN</Login>
+            <Login href='/home'>LOGIN</Login>
         </Nav>
     )
 }
