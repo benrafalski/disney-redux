@@ -1,14 +1,40 @@
 import styled from 'styled-components';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import axios from '../axios'
 
 const LoginPage = () => {
     const history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [users, setUsers] = useState([])
 
-    const login = () => {
-        
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const res = await axios.get('/users')
+            setUsers(res.data)
+            //console.log(users)
+        }
+
+        fetchUsers()
+    }, [])
+
+    const login = (e) => {
+        e.preventDefault()
+        for(let i = 0; i < users.length; i++){
+            if(users[i].email === email){
+                if(users[i].password === password){
+                    //setCurrentUser(users[i])
+                    console.log('Signed in successfully')
+                    history.push('/home')
+                    return
+                }else{
+                    alert('incorrect password...try again')
+                    return
+                }
+            }
+        }
+        alert('email is not registered')
     }
 
     return (
