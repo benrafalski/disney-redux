@@ -7,16 +7,22 @@ import TheatersIcon from '@material-ui/icons/Theaters';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
-import { selectUserEmail, selectUserPassword, selectUserPhoto } from "../features/userSlice";
+import { selectUserEmail, selectUserPassword, selectUserPhoto, setUserLoginDetails } from "../features/userSlice";
+import { useEffect } from "react";
 
 const Header = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const userEmail = useSelector(selectUserEmail)
-    const userPassword = useSelector(selectUserPassword)
     const userPhoto = useSelector(selectUserPhoto)
- //*/
-    console.log(userEmail)
+
+    useEffect(() => {
+        const user = localStorage.getItem('user')
+
+        if(user){
+            dispatch(setUserLoginDetails(JSON.parse(user)))
+        }
+    }, [])
+
 
     return (
         <Nav>
@@ -52,7 +58,7 @@ const Header = () => {
                                 <span>SERIES</span>
                             </a>
                         </NavMenu>
-                        <img src={userPhoto}/>
+                        <UserImg src={userPhoto}/>
                     </>
                 : <Login href='/login'>LOGIN</Login>
             }
@@ -171,6 +177,13 @@ const Login = styled.a`
         color: #000;
         border-color: transparent;
     }
+`;
+
+const UserImg = styled.img`
+    object-fit: cover;
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
 `;
 
 

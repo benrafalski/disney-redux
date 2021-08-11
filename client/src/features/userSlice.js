@@ -13,7 +13,9 @@ const userSlice = createSlice({
         setUserLoginDetails: (state, action) => {
             state.email = action.payload.email
             state.password = action.payload.password
-            state.photo = action.payload.photo
+            if(action.payload.photo){
+                state.photo = action.payload.photo
+            }
         },
         setSignOutState: (state) => {
             state.email = ''

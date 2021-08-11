@@ -27,11 +27,8 @@ const LoginPage = () => {
         for(let i = 0; i < users.length; i++){
             if(users[i].email === email){
                 if(users[i].password === password){
-                    //setCurrentUser(users[i])
                     setUser(users[i])
-                    dispatch(
-                        setUserLoginDetails(users[i])
-                    )
+                    localStorage.setItem('user', JSON.stringify(users[i]))
                     console.log(`Signed in successfully ${email}`)
                     history.push('/home')
                     return
