@@ -9,7 +9,7 @@ const Login = () => {
             <Content>
                 <CTA>
                     <CTALogoOne src='https://cannonball-cdn.bamgrid.com/assets/originals/bundle-logo-01.svg'/>
-                    <SignUp onClick={e => history.push('/login')}>GET ALL THREE</SignUp>
+                    <SignUp href="/login">GET ALL THREE</SignUp>
                     <Description>
                         Get Premier Access to Raya and the Last Dragon for an additional
                         fee with a Disney+ subscription. As pf 03/26/21, the price of

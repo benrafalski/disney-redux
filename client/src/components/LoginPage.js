@@ -1,16 +1,42 @@
 import styled from 'styled-components';
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 const LoginPage = () => {
+    const history = useHistory()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const login = () => {
+        
+    }
+
     return (
        <Container>
            <Content>
                <Login>
-                <img src='https://cannonball-cdn.bamgrid.com/assets/originals/bundle-logo-01.svg'/>
+                <img 
+                    style={{ cursor:'pointer' }} 
+                    onClick={e => history.push('/')}
+                    src='https://cannonball-cdn.bamgrid.com/assets/originals/bundle-logo-01.svg'
+                />
                 <LoginForm>
                     <FormText>Log in with your email</FormText>
-                    <FormInput type='text' placeholder='Email'/>
-                    <FormButton>Continue</FormButton>
+                    <FormInput 
+                        type='text' 
+                        placeholder='Email' 
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <FormInput 
+                        style={{ marginTop:'24px' }} 
+                        type='password' 
+                        placeholder='Password' 
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <FormButton
+                        type='submit'
+                        onClick={login}    
+                    >Continue</FormButton>
                 </LoginForm>
                 <Margin>
                     <NewMember>New to Disney+?</NewMember>

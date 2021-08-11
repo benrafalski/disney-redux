@@ -43,7 +43,7 @@ const Header = () => {
                     <span>SERIES</span>
                 </a>
             </NavMenu>
-            <Login href='/home'>LOGIN</Login>
+            <Login href='/login'>LOGIN</Login>
         </Nav>
     )
 }
