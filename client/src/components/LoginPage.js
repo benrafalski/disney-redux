@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from '../axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserEmail, selectUserPassword, selectUserPhoto, setUserLoginDetails } from '../features/userSlice';
 
 const LoginPage = () => {
+    const dispatch = useDispatch()
     const history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -25,7 +28,11 @@ const LoginPage = () => {
             if(users[i].email === email){
                 if(users[i].password === password){
                     //setCurrentUser(users[i])
-                    console.log('Signed in successfully')
+                    setUser(users[i])
+                    dispatch(
+                        setUserLoginDetails(users[i])
+                    )
+                    console.log(`Signed in successfully ${email}`)
                     history.push('/home')
                     return
                 }else{
@@ -35,6 +42,18 @@ const LoginPage = () => {
             }
         }
         alert('email is not registered')
+    }
+
+    const setUser = (user) => {
+        console.log(user)
+        dispatch(
+            setUserLoginDetails({
+                email: user.email,
+                password: user.password,
+                photo: user.photo
+            })
+        )
+        console.log(user.email)
     }
 
     return (

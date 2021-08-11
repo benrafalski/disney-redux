@@ -5,45 +5,57 @@ import AddIcon from '@material-ui/icons/Add';
 import StarIcon from '@material-ui/icons/Star';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
+import { selectUserEmail, selectUserPassword, selectUserPhoto } from "../features/userSlice";
 
 const Header = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const userEmail = useSelector(selectUserEmail)
+    const userPassword = useSelector(selectUserPassword)
+    const userPhoto = useSelector(selectUserPhoto)
+ //*/
+    console.log(userEmail)
 
     return (
         <Nav>
             <Logo>
                 <img src='https://cannonball-cdn.bamgrid.com/assets/originals/logo-nopad.svg' alt='Disney+'/>
             </Logo>
-            <NavMenu>
-                <a href='/home'>
-                    <HomeIcon/>
-                    <span>HOME</span>
-                </a>
-                <a>
-                    <SearchIcon/>
-                    <span>SEARCH</span>
-                </a>
-                <a>
-                    <AddIcon/>
-                    <span>WATCHLIST</span>
-                </a>
-                <a>
-                    <StarIcon/>
-                    <span>ORIGINALS</span>
-                </a>
-                <a>
-                    <TheatersIcon/>
-                    <span>MOVIES</span>
-                </a>
-                <a>
-                    <LiveTvIcon/>
-                    <span>SERIES</span>
-                </a>
-            </NavMenu>
-            <Login href='/login'>LOGIN</Login>
+            {userEmail 
+                ?  
+                    <>
+                        <NavMenu>
+                            <a href='/home'>
+                                <HomeIcon/>
+                                <span>HOME</span>
+                            </a>
+                            <a>
+                                <SearchIcon/>
+                                <span>SEARCH</span>
+                            </a>
+                            <a>
+                                <AddIcon/>
+                                <span>WATCHLIST</span>
+                            </a>
+                            <a>
+                                <StarIcon/>
+                                <span>ORIGINALS</span>
+                            </a>
+                            <a>
+                                <TheatersIcon/>
+                                <span>MOVIES</span>
+                            </a>
+                            <a>
+                                <LiveTvIcon/>
+                                <span>SERIES</span>
+                            </a>
+                        </NavMenu>
+                        <img src={userPhoto}/>
+                    </>
+                : <Login href='/login'>LOGIN</Login>
+            }
         </Nav>
     )
 }
