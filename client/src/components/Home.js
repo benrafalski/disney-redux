@@ -15,7 +15,7 @@ const Container = styled.main`
     overflow-x: hidden;
     display: block;
     top: 72px;
-    padding: 0 calc(3.5vw + 5xp);
+    padding: 0 calc(3.5vw + 5px);
 
     &:after {
         background: url('https://raw.githubusercontent.com/CleverProgrammers/cp-disney-plus-clone/master/public/images/home-background.png') center center / cover no-repeat fixed;
