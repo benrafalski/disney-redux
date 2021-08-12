@@ -4,6 +4,7 @@ import NewDisney from './NewDisney'
 import Originals from './Originals'
 import Recommended from './Recommended'
 import Viewers from './Viewers'
+import Trending from './Trending'
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Recommended/>
             <NewDisney/>
             <Originals/>
+            <Trending/>
         </Container>
     )
 }
