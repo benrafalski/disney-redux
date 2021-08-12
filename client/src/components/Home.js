@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import ImgSlider from './ImgSlider'
+import NewDisney from './NewDisney'
+import Originals from './Originals'
 import Recommended from './Recommended'
 import Viewers from './Viewers'
 
@@ -9,6 +11,8 @@ const Home = () => {
             <ImgSlider/>
             <Viewers/>
             <Recommended/>
+            <NewDisney/>
+            <Originals/>
         </Container>
     )
 }
