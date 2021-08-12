@@ -1,20 +1,60 @@
 import styled from 'styled-components'
 import ImgSlider from './ImgSlider'
-import NewDisney from './NewDisney'
-import Originals from './Originals'
-import Recommended from './Recommended'
 import Viewers from './Viewers'
-import Trending from './Trending'
+import { useEffect } from 'react'
+import axios from '../axios'
+import { useDispatch } from 'react-redux'
+import { selectNewDisney, selectOriginal, selectRecommended, selectTrending, setMovies } from '../features/movieSlice'
+import Movies from './Movies'
 
 const Home = () => {
+    const dispatch = useDispatch()
+
+    let recommends = []
+    let newDisney = []
+    let originals = []
+    let trending = []
+
+    useEffect(() => {
+        const fetchMovies = async () => {
+            const res = await axios.get('/movies')
+            
+            res.data.map((doc) => {
+                switch(doc.type) {
+                    case 'recommend':
+                        recommends = [...recommends, doc]
+                        break;
+                    case 'new':
+                        newDisney = [...newDisney, doc]
+                        break;
+                    case 'original':
+                        originals = [...originals, doc]
+                        break;
+                    case 'trending':
+                        trending = [...trending, doc]
+                        break;
+                }
+
+                dispatch(setMovies({
+                    recommended: recommends,
+                    newDisney: newDisney,
+                    original: originals,
+                    trending: trending
+                }))
+            })
+        }
+
+        fetchMovies()
+    }, [])
+
     return (
         <Container>
             <ImgSlider/>
             <Viewers/>
-            <Recommended/>
-            <NewDisney/>
-            <Originals/>
-            <Trending/>
+            <Movies selector={selectRecommended} header='Recommended for You'/>
+            <Movies selector={selectNewDisney} header='New to Disney+'/>
+            <Movies selector={selectOriginal} header='Disney Originals'/>
+            <Movies selector={selectTrending} header='Trending'/>
         </Container>
     )
 }
