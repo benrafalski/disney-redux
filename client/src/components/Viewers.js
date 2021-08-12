@@ -18,7 +18,7 @@ const Viewers = () => {
                 </video>
             </Wrap>
             <Wrap>
-                <img style={{ width:'80%', height:'90%' }} src='https://i.dlpng.com/static/png/6342494_preview.png'/> 
+                <img style={{ width:'60%', height:'50%' }} src='https://logos-world.net/wp-content/uploads/2020/11/Marvel-Logo-2012-2014.png' alt='marvel'/> 
                 <video 
                     autoPlay 
                     muted
@@ -46,7 +46,7 @@ const Viewers = () => {
                 </video>
             </Wrap>
             <Wrap>
-                <img style={{ width:'60%', height:'50%' }} src='https://i.dlpng.com/static/png/6844653_preview.png'/> 
+                <img style={{ width:'80%', height:'50%' }} src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0da5d569-0f3d-47c4-98d9-2ac29218c2a0/ddhyct3-2b54dee6-9d02-428a-ba5f-00f804b30539.png/v1/fill/w_1280,h_442,strp/white_pixar_animation_studios_logo_by_trustamann_ddhyct3-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDQyIiwicGF0aCI6IlwvZlwvMGRhNWQ1NjktMGYzZC00N2M0LTk4ZDktMmFjMjkyMThjMmEwXC9kZGh5Y3QzLTJiNTRkZWU2LTlkMDItNDI4YS1iYTVmLTAwZjgwNGIzMDUzOS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.PORQutXiZh5vTcBNl6VrAdKTBY9ak7dmf0_nrKiDFEg' alt='pixar'/> 
                 <video 
                     autoPlay 
                     muted
