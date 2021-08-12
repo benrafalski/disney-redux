@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const Users = require('./models/User.js')
+const Movies = require('./models/Movie.js')
 
 const app = express()
 const port = process.env.PORT || 8000
@@ -55,6 +56,26 @@ app.post('/users', (req, res) => {
             : res.status(201).send(data)
     })
 })
+
+app.get('/movies', (req, res) => {
+    Movies.find((err, data) => {
+        err 
+            ? res.status(500).send(err)
+            : res.status(200).send(data)
+    })
+})
+
+// POST - new movie
+app.post('/movies', (req, res) => {
+    const dbMovie = req.body;
+    
+    Movies.create(dbMovie, (err, data) => {
+        err
+            ? res.status(500).send(err)
+            : res.status(201).send(data)
+    })
+})
+
 app.listen(port, () => {
     console.log(`listening on port ${port}...`)
 })
