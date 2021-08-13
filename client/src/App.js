@@ -4,6 +4,7 @@ import Header from './components/Header';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Home from './components/Home';
 import LoginPage from './components/LoginPage';
+import Detail from './components/Detail';
  
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route exact path='/home'>
             <Header/>
             <Home/>
+          </Route>
+          <Route path='/detail:id'>
+            <Header/>
+            <Detail/>
           </Route>
         </Switch>
       </div>
